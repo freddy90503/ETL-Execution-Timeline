@@ -18,7 +18,7 @@ fig.update_layout(
     xaxis_title="Time of Day (CST)",
     yaxis_title="ETL",
     height=2000,
-    width=1600,
+    width=2400,
     font=dict(size=14),
     xaxis=dict(
         tickformat="%H:%M",
@@ -26,7 +26,8 @@ fig.update_layout(
         title_font=dict(size=16),
     ),
     yaxis=dict(title_font=dict(size=16)),
-    title_font=dict(size=20)
+    title_font=dict(size=20),
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0)
 )
 
 # Dash app
@@ -40,7 +41,7 @@ app.layout = html.Div([
             options=[{"label": name, "value": name} for name in sorted(df['ETL'].unique())],
             placeholder='Select or type to filter ETL...'
         )
-    ], style={'width': '100%', 'margin-bottom': '20px'}),
+    ], style={'width': '50%', 'margin-bottom': '20px'}),
     dcc.Graph(id='etl-timeline', figure=fig, style={'width': '100%'})
 ])
 
@@ -56,10 +57,11 @@ def update_figure(search_value):
         title="ETL Execution Timeline (Filtered)",
         xaxis_title="Time of Day (CST)",
         height=2000,
-        width=1600,
+        width=2400,
         font=dict(size=14),
         xaxis=dict(tickformat="%H:%M"),
-        title_font=dict(size=20)
+        title_font=dict(size=20),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0)
     )
     return fig
 
