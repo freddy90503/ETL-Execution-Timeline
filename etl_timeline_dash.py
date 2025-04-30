@@ -18,7 +18,7 @@ fig.update_layout(
     xaxis_title="Time of Day (CST)",
     yaxis_title="ETL",
     height=2000,
-    width=2400,
+    width=1800,
     font=dict(size=14),
     xaxis=dict(
         tickformat="%H:%M",
@@ -57,7 +57,7 @@ def update_figure(search_value):
         title="ETL Execution Timeline (Filtered)",
         xaxis_title="Time of Day (CST)",
         height=2000,
-        width=2400,
+        width=1800,
         font=dict(size=14),
         xaxis=dict(tickformat="%H:%M"),
         title_font=dict(size=20),
