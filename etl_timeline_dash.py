@@ -17,7 +17,8 @@ fig.update_yaxes(autorange="reversed")
 fig.update_layout(
     xaxis_title="Time of Day (CST)",
     yaxis_title="ETL",
-    height=800,
+    height=1400,
+    width=1300,
     font=dict(size=14),
     xaxis=dict(
         tickformat="%H:%M",
@@ -32,7 +33,14 @@ fig.update_layout(
 app = dash.Dash(__name__)
 app.layout = html.Div([
     html.H1("Interactive ETL Execution Timeline"),
-    dcc.Input(id='etl-search', type='text', placeholder='Search ETL name...'),
+    html.Div([
+        html.Label("Search ETL:"),
+        dcc.Dropdown(
+            id='etl-search',
+            options=[{"label": name, "value": name} for name in sorted(df['ETL'].unique())],
+            placeholder='Select or type to filter ETL...'
+        )
+    ], style={'width': '40%', 'margin-bottom': '20px'}),
     dcc.Graph(id='etl-timeline', figure=fig)
 ])
 
@@ -47,7 +55,8 @@ def update_figure(search_value):
     fig.update_layout(
         title="ETL Execution Timeline (Filtered)",
         xaxis_title="Time of Day (CST)",
-        height=800,
+        height=1400,
+        width=1300,
         font=dict(size=14),
         xaxis=dict(tickformat="%H:%M"),
         title_font=dict(size=20)
